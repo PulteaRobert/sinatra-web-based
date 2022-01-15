@@ -1,0 +1,71 @@
+<head>
+    <title>Mentor homepage</title>
+   <link rel="stylesheet" href="style/common.css">
+</head>
+
+<div class="navigation">
+   <body>
+      <header>
+         <h1>Home</h1>
+      </header>
+
+      <nav>
+        <p>You are a mentor, here is your information below.</p>
+          <table>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Course</th>
+              <th>Year of Study</th>
+            </tr>
+            <tr>
+              <td><%= h $login_user.user_name %></td>
+              <td><%= "********" %></td>
+              <td><%= h $login_user.email %></td>
+              <td><%= h $login_user.gender %></td>
+              <td><%= h $login_user.course %></td>
+              <td><%= h $login_user.year_of_study %></td>
+              <td><a href="/edit?id=<%= h $login_user.id %>">edit</a></td>
+            </tr>
+          </table>
+        <form>
+            <p>Enter a course:
+            <input class="search" type="text" name="course_search" value="<%= h @course_search %>"/>
+            <input type="submit" value="Submit" /></p>
+        </form>
+
+        <% if @matched_mentees.count > 0 %>
+          <p>Here is your matched-mentees' information below.</p>
+          <table>
+            <tr>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Course</th>
+              <th>Year of Study</th>
+            </tr>
+            <% @matched_mentees.each do |db| %>
+              <% if db.is_mentee? %>
+                <tr>
+                  <td><%= h db.user_name %></td>
+                  <td><%= "********" %></td>
+                  <td><%= h db.email %></td>
+                  <td><%= h db.gender %></td>
+                  <td><%= h db.course %></td>
+                  <td><%= h db.year_of_study %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        <% else %>
+          <p>You do not have a mentor currently.</p>
+        <% end %>
+        
+        </nav>
+
+      <br/><a href ="/">Introduction</a>
+  </body>
+</div>

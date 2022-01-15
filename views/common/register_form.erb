@@ -1,0 +1,119 @@
+<%# information required in 'register.rb' and 'edit.rb' %>
+<%# username %>
+<div class="row">
+    <p>Username </p>
+        <strong>
+         <input type="text" name="username" value="<%= h @user.user_name %>" placeholder="Enter a username..."/>
+        </strong>
+        <% if @user.errors.include?("user_name") %>
+          <% @user.errors["user_name"].each do |error| %>
+            <p class="error"><strong><%= error %></strong></p>
+          <% end %>
+        <% end %>
+</div>
+
+<%# password %>
+<div class="row">
+    <p>Password </p>
+        <strong>
+         <input type="text" name="password" value="<%= h @user.password %>" placeholder="Enter a password..."/>
+        </strong>
+        <% if @user.errors.include?("password") %>
+          <% @user.errors["password"].each do |error| %>
+            <p class="error"><strong><%= error %></strong></p>
+          <% end %>
+        <% end %>
+</div>
+
+<%# gender %>
+<div class="row">
+  <p>Gender</p>
+      
+        <select name="gender" id="gender" value="<%= h @user.gender %>">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+</div>
+
+<%# subject options %>
+<div class="row">
+  <p>Course</p>
+       
+        <select name="course" id="course" value="<%= h @user.course %>">
+            <option>Accounting and Financial Management</option>
+            <option>Accounting and Financial Management and Economics</option>
+            <option>Aerospace Engineering</option>
+            <option>Applied Social Sciences</option>
+            <option>Archaeology</option>
+            <option>Archaeology and History</option>
+            <option>Archaeology and Modern Languages and Cultures</option>
+            <option>Architectural Engineering</option>
+            <option>Architecture</option>
+            <option>Architecture and Landscape</option>
+            <option>Artificial Intelligence and Computer Science</option>
+            <option>Bio-dental Science and Technology</option>
+            <option>Biochemistry</option>
+            <option>Biochemistry and Genetics</option>
+            <option>Biochemistry and Microbiology</option>
+            <option>Bioengineering</option>
+            <option>Biology</option>
+            <option>Biomedical Science</option>
+            <option>Biosciences</option>
+            <option>Business Management</option>
+            <option>Business Management and Economics</option>
+            <option>Business Management and Japanese Studies</option>
+            <option>Business Management and Modern Languages and Cultures</option>
+            <option>Bio-dental Science and Technology</option>
+            <option>Computer Science</option>
+        </select>
+</div>
+
+<%# current year of study %>
+<div class="row">
+  <p>Year of study</p>
+  
+        <select name="year_of_study" id="year_of_study" value="<%= h @user.year_of_study %>">
+            <option>First Year</option>
+            <option>Second Year</option>
+            <option>Third Year</option>
+            <option>Fourth Year</option>
+            <option>Graduate</option>
+        </select>
+</div>
+
+<%# role %>
+<div class="row">
+    <p>
+        Role </p><br/>
+        <strong>
+            <input id="role" name="role" type="radio" value="mentee" />
+            <label for="role">mentee</label>
+            <input id="role" name="role" type="radio" value="mentor" />
+            <label for="role">mentor</label>
+            <input id="role" name="role" type="radio" value="admin" />
+            <label for="role">admin</label>
+        </strong>
+        <% if @user.errors.include?("role") %>
+          <% @user.errors["role"].each do |error| %>
+            <p class="error"><strong><%= error %></strong></p>
+          <% end %>
+        <% end %>
+</div>
+
+<%# email %>
+<div class="row">
+    <p>Email </p>
+        <strong>
+         <input type="text" name="email" value="<%= h @user.email %>" placeholder="Enter a email..."/>
+        </strong>
+        <% if @user.errors.include?("email") %>
+          <% @user.errors["email"].each do |error| %>
+            <p class="error"><strong>Email <%= error %></strong></p>
+          <% end %>
+        <% end %>
+</div>
+
+<%# sign up button %>
+<div class="row">
+      <input type="submit" value="Submit">
+</div>

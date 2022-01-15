@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Admin homepage</title>
+    <link rel="stylesheet" href="../style/common.css">
+    </head>
+  
+  <div class="navigation">
+    <body>
+        <header>
+            <h1>Home</h1>
+        </header>
+      
+        <nav>
+            <p>You are an admin.</p>
+            <p><strong>Mentee List</strong></p>
+            <%# list mentee information form %>
+            <% if @mentees.count > 0 %>
+              <table>
+                <tr>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Course</th>
+                  <th>Year of Study</th>
+                </tr>
+              <% @mentees.each do |mentee| %>
+                <tr>
+                  <td><%= h mentee.user_name %></td>
+                  <td><%= "********" %></td>
+                  <td><%= h mentee.email %></td>
+                  <td><%= h mentee.gender %></td>
+                  <td><%= h mentee.course %></td>
+                  <td><%= h mentee.year_of_study %></td>
+                  <td><%= h mentee.matched_id %></td>
+                </tr>
+              <% end %> 
+              </table>
+             <% else %>
+             <p>There is no user information stored in the database.</p>
+             <% end %>
+            
+            <%# list mentor information form %>
+            <p><strong>Mentor List</strong></p>
+            <% if @mentors.count > 0 %>
+              <table>
+                <tr>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Course</th>
+                  <th>Year of Study</th>
+                </tr>
+            <% @mentors.each do |mentor| %>
+                <tr>
+                  <td><%= h mentor.user_name %></td>
+                  <td><%= "********" %></td>
+                  <td><%= h mentor.email %></td>
+                  <td><%= h mentor.gender %></td>
+                  <td><%= h mentor.course %></td>
+                  <td><%= h mentor.year_of_study %></td>
+                  <td><%= h mentor.matched_id %></td>
+                </tr>
+              <% end %> 
+              </table>
+             <% else %>
+             <p>There is no user information stored in the database.</p>
+             <% end %>
+            <br/>
+        </nav>
+      
+        <br/><a href ="/">Introduction</a>
+    </body>
+  </div>
+</html>

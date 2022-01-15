@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>Mentee homepage</title>
+    <link rel="stylesheet" href="../style/common.css">
+  </head>
+  
+  <div class="navigation">
+    <body>
+        <header>
+            <h1>Home</h1>
+        </header>
+      
+        <nav>
+            <p>You are a mentee, here is your information below.</p>
+              <table>
+                <tr>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Course</th>
+                  <th>Year of Study</th>
+                </tr>
+                <tr>
+                  <td><%= h $login_user.user_name %></td>
+                  <td><%= "********" %></td>
+                  <td><%= h $login_user.email %></td>
+                  <td><%= h $login_user.gender %></td>
+                  <td><%= h $login_user.course %></td>
+                  <td><%= h $login_user.year_of_study %></td>
+                  <td><a href="/edit?id=<%= h $login_user.id %>">edit</a></td>
+                </tr>
+              </table>
+      
+            <% if $login_user.matched_id.nil? %>
+              <p>You do not have a mentor currently. Here are some mentors available:</p>
+              <%# list personal information form %>
+              <% if @mentors.count > 0 %>
+                <table>
+                  <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Course</th>
+                    <th>Year of Study</th>
+                  </tr>
+                <% @mentors.each do |db| %>
+                  <% if db.is_mentor? %>
+                    <tr>
+                      <td><%= h db.user_name %></td>
+                      <td><%= "********" %></td>
+                      <td><%= h db.email %></td>
+                      <td><%= h db.gender %></td>
+                      <td><%= h db.course %></td>
+                      <td><%= h db.year_of_study %></td>
+                      <td>
+                        <form method="post" action="/match">
+                          <input type="hidden" name="id" value="<%=h db.id %>" />
+                          <input type="submit" value="Match" onclick="return confirm('Are you sure?')" />
+                        </form>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </table>
+              <% else %>
+                <p>There is no user information stored in the database.</p>
+              <% end %>
+            <% else %>
+                
+                <%if !@matched_mentor.nil?%>
+                  <p>Here is your mentor's information</p>
+                  <table>
+                      <tr>
+                          <th>Username</th>
+                          <th>Email</th>
+                      </tr>
+                      <tr>
+                          <td><%= h @matched_mentor.user_name %></td>
+                          <td><%= h @matched_mentor.email %></td>
+                      </tr>
+                  </table>
+                <%else%>
+                <p>You don't have a mentor</p>
+                <%end%>
+            <% end %>  
+            
+
+        </nav>
+
+      
+        <br/><a href ="/">Introduction</a>
+    </body>
+  </div>
+</html>

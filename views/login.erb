@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style/login.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+        <p><center>Login to see more information</center></p>
+
+      <form method="post" action="/login">
+
+          <% unless @error.nil? %>
+          <p><strong class="error"><%= @error %></strong></p>
+          <% end %>
+
+          <p>
+            Username <br />
+            <input type="text" name="username" value="<%= @user.user_name %>" placeholder="Enter your username..."/> 
+            <% if @user.errors.include?("user_name") %>
+              <% @user.errors["user_name"].each do |error| %>
+                <br /><strong class="error"><%= @error %></strong>
+              <% end %>
+            <% end %>
+          </p>
+        
+          <p>
+            Password <br />
+            <input type="password" name="password" placeholder="Enter your password..."/>
+            <% if @user.errors.include?("password") %>
+              <% @user.errors["password"].each do |error| %>
+                <br /><strong class="error"><%= @error %></strong>
+              <% end %>
+            <% end %>
+          </p>
+        
+          <p><input type="submit" value="Submit"></p>
+      </form>
+      
+      <%# login option %>
+      <p><a href="register" title="Register_page">New to this website?</a></p>
+      
+    </div>
+  </body>
+</html>
+

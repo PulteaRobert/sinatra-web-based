@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Team 19</title>
+    <link rel="stylesheet" href="style/common.css">
+  </head>
+  
+  <div class="navigation">
+    <body>
+      <header>
+        <h1>Introduction</h1>
+      </header>
+      
+        <% #judge if logged-in or not then show different info %>
+        <nav>
+        <ul>
+            <% if session[:logged_in] %>
+                <li><a href="/logout">Logout</a></li>
+            <% else %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% end %>
+        </ul>
+        </nav>
+
+    </body>
+  </div>
+</html>

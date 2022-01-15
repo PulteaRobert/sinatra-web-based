@@ -1,0 +1,26 @@
+<html>
+  <head>
+      <title>Register</title>
+      <link rel="stylesheet" href="style/common.css">
+  </head>
+
+  <body>
+      <div class="container">
+          <h1>Register your account</h1>
+          <% unless @user.errors.size.zero? %>
+              <p><strong class="error">Please correct the errors below:</strong></p>
+          <% end %>
+
+          <form method="post"  action="/register">
+              <%# insert the form from common %>
+              <%= erb :"common/register_form" %>
+
+              <%# signin option - if user has already created an account %>
+              <p class="login_option">
+                  Already have an account?
+                  <a href="login" title="login_page">Sign in</a>
+              </p>
+          </form>
+      </div>
+  </body>
+</html>
